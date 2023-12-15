@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<title>Employee Management</title>
+<link rel="stylesheet" href="{{url_for('static',filename='flask.css')}}"> 
+</head>
+<body>
+<h1 id="a">Employee Management System</h1>
+<h4>{% with messages = get_flashed_messages() %}
+	{%if messages%}
+		{% for message in messages %}
+			{{message}}
+		{%endfor%}
+	{%endif%}
+{%endwith%}</h4>
+
+<p><a href="{{url_for('addusers')}}">Add New Employee Details</a></p>
+<table>
+<tr>
+<th>ID</th>
+<th>NAME</th>
+<th>AGE</th>
+<th>CITY</th>
+<th>NUMBER</th>
+<th>EMAIL</th>
+<th >EDIT</th>
+<th >DELETE</th>
+</tr>
+{% for data in datas %}
+<tr>
+<td>{{data.ID}}</td>
+<td>{{data.NAME}}</td>
+<td>{{data.AGE}}</td>
+<td>{{data.CITY}}</td>
+<td>{{data.mobile_number}}</td>
+<td>{{data.email}}</td>
+<td><a href="{{url_for('updates',id=data.ID)}}" id='b'>Edit</a></td>
+<td><a href="{{url_for('deletes',id=data.ID)}}" id='c'>Delete</a></td>
+</tr>
+
+{% endfor %}
+
+</body>
+</html>
